@@ -1,0 +1,1 @@
+0000000000000000000000000000000000000000 2243f9893676346685d67133436baec64792d976 almarz@gmail.com <almarz@gmail.com> 1596725881 +0900	fetch --quiet --progress origin --tags +refs/heads/*:refs/remotes/origin/* +refs/heads/master:refs/remotes/origin/master +refs/tags/*:refs/tags/*: storing head
