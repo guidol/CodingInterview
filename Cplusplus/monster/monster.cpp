@@ -1,15 +1,15 @@
 #include<iostream>
 #include<string>
-//#include<Windows.h>
-#include<unistd.h>
-using namespace std;
+#include<chrono>
+
+std::chrono::high_resolution_clock Clock;
 
 class Hero{
 	private:
 		int health;
 	public:
-		Hero(){
-			health = 40;
+		Hero(int h){
+			health = h;
 		}
 		void damage(int num);
 		void ShowHealth();
@@ -25,72 +25,65 @@ void Hero::ShowHealth(){
 
 class Monster{
 	private:
-		int Dragon;
-		int Orc;
+		int health;
 	public:
-		Monster(){
-		Dragon = 20;
-		Orc = 7;
-		}
+		void setHealth(int h);
 		void damage(int num);
 		void ShowHealth();
 };
+
+void Monster::setHealth(int h){
+	health = h;
+}
 void Monster::damage(int num){
-	Orc-=num;
+	health-=num;
 }
 
 void Monster::ShowHealth(){
-	cout<<"Orc:"<<Orc<<endl;
+	cout<<"Monster:"<<health<<endl;
 }
 
+class Dragon : public Monster{
+			
+};
+class Orc : public Monster{
+};
 
 int main(){
 	string input;
-	Hero hero;
-	Monster monster;
+	Hero hero(40);
+	Dragon dragon;
+	Orc orc; 
 
-	for(int i=0; i < 3 ; i++){
-		cout<<"Type 'attack Orc'"<<endl;
+
+	dragon.setHealth(20);
+	orc.setHealth(7);
+	
+	while(true){
+		auto t1 = clock::now();
+		
+		cout<<"Type 'attack Orc' for starting game"<<endl;
 		getline(cin,input);
-		if (input == "attack Orc" && i == 0)
-		{	sleep(15);
-			cout<<endl;
-			cout<<"Orc attack"<<endl;
-			cout<<"Hero attack"<<endl;
-			hero.damage(1);
-			monster.damage(2);
-			cout<<endl;
+
+		if(input == "attack Orc"){
+			auto t2 = clock::now();
+			cout<<"Game started"<<chrono::duration_cast<chrono::milliseconds>(t2-t1).count()<<"Milliseconds ago"<<endl;
+			auto t3 = chrono::duration_cast<chrono::milliseconds>(t2-t1).count()/1400;
+			orc.damage(2);
+			
+			for(int i=0;i < t3;i++){
+				hero.damage(1);
+			}
+			hero.ShowHealth();
+			dragon.ShowHealth();
+			orc.ShowHealth();
 		}
+
+		break;
+
+	}
+
 	
-		else if (input == "attack Orc" && i == 1)
-		{
-			sleep(10);
-			cout<<endl;
-			cout<<"Dragon attack!!!"<<endl;
-			hero.damage(3);
-			monster.damage(2);
-			cout<<endl;
-		}
-		else if (input == "attack Orc" && i == 2)
-		{
-			sleep(20);
-			cout<<endl;
-			cout<<"Orc attack"<<endl;
-			cout<<"Orc attack"<<endl;
-			cout<<"Dragon attack"<<endl;
-			monster.damage(2);
-			hero.damage(5);
-			cout<<endl;
-		}
-
-		else
-			cout<<"You typed wrong keyword!!!"<<endl;
-
-	}	
-	
-		hero.ShowHealth();
-		monster.ShowHealth();
-
 
 	return 0;
 }
