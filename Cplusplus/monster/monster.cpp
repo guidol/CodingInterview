@@ -31,55 +31,56 @@ int Hero::GetHealth() const{
 	return health;
 }
 
-class Dragon{
+class Monster{
 	private:
 		int health;
 	public:
-		Dragon(int h):health(h){}
+		Monster(int h):health(h){}
 		void damage(int num);
-		void ShowHealth();
+		void DisplayHealth() const;
 		int GetHealth() const;
 };
 
-void Dragon::damage(int num){
+void Monster::damage(int num){
 	health-=num;
 	if(health < 1)
 		health=0;
 }
 
-void Dragon::ShowHealth(){
-	cout<<"Dragon:"<<health<<endl;
+void Monster::DisplayHealth() const{
+	cout << health << endl;
 }
 
-int Dragon::GetHealth() const{
+int Monster::GetHealth() const{
 	if(health > 0)
 		return health;
 	else
 		return 0;
 }
-class Orc{
-	private:
-		int health;
+
+class Dragon:public Monster{
 	public:
-		Orc(int h):health(h){}
-		void damage(int num);
+		using Monster::Monster;
 		void ShowHealth();
-		int GetHealth() const;
 };
 
-void Orc::damage(int num){
-	health-=num;
-	if(health < 1)
-		health = 0;
+void Dragon::ShowHealth(){
+	cout<<"Dragon:" ;
+	DisplayHealth();
 }
+
+class Orc:public Monster{
+	public:
+		using Monster::Monster;
+		void ShowHealth();
+};
 
 void Orc::ShowHealth(){
-	cout<<"Orc:"<<health<<endl;
+	cout<<"Orc:" ;
+	DisplayHealth();
 }
 
-int Orc::GetHealth() const{
-	return health;
-}
+
 
 int main(){
 	string input;
