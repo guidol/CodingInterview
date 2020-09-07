@@ -8,24 +8,26 @@ class Hero{
 	private:
 		int health;
 	public:
-		Hero(int h){
-			health = h;
-		}
+		
+		Hero(int h):health(h){}
 		void damage(int num);
 		void ShowHealth();
-		void SetDead();
-		int GetHealth();
+		bool IsAlive();
+		int GetHealth() const;
 };
 void Hero::damage(int num){
 	health-=num;
+	if(health < 1)
+		health=0;
 }
 void Hero::ShowHealth(){
 	cout<<"Hero:"<<health<<endl;
 }
-void Hero::SetDead(){
-	health=0;
+bool Hero::IsAlive(){
+	if(health > 0)
+		return true;
 }
-int Hero::GetHealth(){
+int Hero::GetHealth() const{
 	return health;
 }
 
@@ -33,52 +35,49 @@ class Dragon{
 	private:
 		int health;
 	public:
-		Dragon(int h){
-			health = h;
-		}
+		Dragon(int h):health(h){}
 		void damage(int num);
 		void ShowHealth();
-		void SetDead();
-		int GetHealth();
+		int GetHealth() const;
 };
 
 void Dragon::damage(int num){
 	health-=num;
+	if(health < 1)
+		health=0;
 }
 
 void Dragon::ShowHealth(){
 	cout<<"Dragon:"<<health<<endl;
 }
-void Dragon::SetDead(){
-	health=0;
-}
-int Dragon::GetHealth(){
-	return health;
+
+int Dragon::GetHealth() const{
+	if(health > 0)
+		return health;
+	else
+		return 0;
 }
 class Orc{
 	private:
 		int health;
 	public:
-		Orc(int h){
-			health = h;
-		}
+		Orc(int h):health(h){}
 		void damage(int num);
 		void ShowHealth();
-		void SetDead();
-		int GetHealth();
+		int GetHealth() const;
 };
 
 void Orc::damage(int num){
 	health-=num;
+	if(health < 1)
+		health = 0;
 }
 
 void Orc::ShowHealth(){
 	cout<<"Orc:"<<health<<endl;
 }
-void Orc::SetDead(){
-	health=0;
-}
-int Orc::GetHealth(){
+
+int Orc::GetHealth() const{
 	return health;
 }
 
@@ -88,8 +87,8 @@ int main(){
 	Dragon dragon(20);
 	Orc orc(7); 
 	auto t1 = Clock::now();
-
-	while(hero.GetHealth()){
+	
+	while(hero.IsAlive()){
 
 		cout<<"Type"<<" "<<"\"attack orc\""<<" "<<"or"<<" "<<"\"attack dragon\""<<"starting game"<<endl;
 		getline(cin,input);
@@ -101,15 +100,10 @@ int main(){
 			
 			if(orc.GetHealth()>0)
 				orc.damage(2);
-			if(orc.GetHealth()<0)
-				orc.SetDead();
 			if(hero.GetHealth()>0 && orc.GetHealth()>0)
 				for(int i=0;i < t3;i++){
 					hero.damage(1);
 				}
-			if(hero.GetHealth()<0){
-				hero.SetDead();
-			}
 			cout<<"================="<<endl;
 			hero.ShowHealth();
 			dragon.ShowHealth();
@@ -124,15 +118,11 @@ int main(){
 		
 			if(dragon.GetHealth()>0)
 				dragon.damage(2);
-			if(dragon.GetHealth()<0)
-				dragon.SetDead();
 			if(hero.GetHealth()>0 && dragon.GetHealth()>0)
 				for(int i=0;i < t5;i++){
 					hero.damage(1);
 				}
-			if(hero.GetHealth()<0){
-				hero.SetDead();
-			}
+	
 			cout<<"================="<<endl;
 			hero.ShowHealth();
 			dragon.ShowHealth();
@@ -140,5 +130,6 @@ int main(){
 			cout<<"================="<<endl;
 		}
 	}
+
 	return 0;
 }
