@@ -80,8 +80,6 @@ void Orc::ShowHealth(){
 	DisplayHealth();
 }
 
-
-
 int main(){
 	string input;
 	Hero hero(40);
