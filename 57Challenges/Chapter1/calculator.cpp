@@ -38,24 +38,34 @@ Prompt for tipRate with "what is the tip rate?"
 
 class Calculator{
 	private:
-		float billamount;
+		string billamount;
 		float tip; 
-		unsigned int tipRate;
+		string tipRate;
 		float total;
 	public:
-		Calculator(float amount, float tipnum, unsigned int rates, float totalnum)
+		Calculator(string amount=0, float tipnum=0, string rates=0, float totalnum=0)
 			:billamount(amount),tip(tipnum),tipRate(rates),total(totalnum){}
-		
+
+		void takeTheBill();
 };
 
+void Calculator::takeTheBill(){
+	cout<<"\"What is the bill amount?\""<<endl;                                  
+        getline(cin,this->billamount);
+	
+	cout<<"\"What is the tip rate?\""<<endl;
+		getline(cin,this->tipRate);
+	this->tip = this->billamount * ((this->tipRate) /100);
+	this->total = this->billamount + this->tip;
+	cout<<"\"Total\""<<this->total<<endl;
+
+}
 
 int main(){
 	
-	cout<<"What is the bill amount?"<<endl;
-	getline(cin,input);
-	cout<<"What is the tip rate?"<<endl;
-	getline(cint,input);
-
+	Calculator cal;
+	cal.takeTheBill();	
+	
 	return 0;
 }
 
