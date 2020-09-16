@@ -55,16 +55,16 @@ void Calculator::takeTheBill(){
 	
 	cout<<"\"What is the tip rate?\""<<endl;
 		getline(cin,this->tipRate);
-	this->tip = this->billamount * ((this->tipRate) /100);
-	this->total = this->billamount + this->tip;
+	this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
+	this->total = std::stof(this->billamount) + this->tip;
 	cout<<"\"Total\""<<this->total<<endl;
 
 }
 
 int main(){
 	
-	Calculator cal;
-	cal.takeTheBill();	
+	Calculator *cal = new Calculator();
+	cal->takeTheBill();	
 	
 	return 0;
 }
