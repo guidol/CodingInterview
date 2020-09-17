@@ -1,4 +1,5 @@
 #include<iostream>
+#include<string>
 using namespace std;
 
 /*
@@ -11,10 +12,10 @@ initialize total to 0
 Prompt for billAmount with "what is the bill amount?"
 Prompt for tipRate with "what is the tip rate?"
 
-#convert billAmount to a number
-#convert tipRate to number
+convert billAmount to a number
+convert tipRate to number
 
-#tip = bilAmount * (tipRate / 100)
+tip = bilAmount * (tipRate / 100)
 
 #round tip up to nearest cent 
 
@@ -43,7 +44,7 @@ class Calculator{
 		string tipRate;
 		float total;
 	public:
-		Calculator(string amount=0, float tipnum=0, string rates=0, float totalnum=0)
+		Calculator(string amount="", float tipnum=0, string rates="", float totalnum=0)
 			:billamount(amount),tip(tipnum),tipRate(rates),total(totalnum){}
 
 		void takeTheBill();
@@ -57,7 +58,7 @@ void Calculator::takeTheBill(){
 		getline(cin,this->tipRate);
 	this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
 	this->total = std::stof(this->billamount) + this->tip;
-	cout<<"\"Total\""<<this->total<<endl;
+	cout<<"\"Total\""<<":"<<this->total<<" "<<"Dollars"<<endl;
 
 }
 
@@ -68,5 +69,4 @@ int main(){
 	
 	return 0;
 }
-
 
