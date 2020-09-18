@@ -1,41 +1,9 @@
+//#automatically updates the values when any values challanges. ---> That means makes a GUI version??
+
+
 #include<iostream>
 #include<string>
-using namespace std;
-
-/*
-
-Initialize billamount to 0
-Initialize tip to 0
-initialize tipRate to 0
-initialize total to 0
-
-Prompt for billAmount with "what is the bill amount?"
-Prompt for tipRate with "what is the tip rate?"
-
-convert billAmount to a number
-convert tipRate to number
-
-tip = bilAmount * (tipRate / 100)
-
-#round tip up to nearest cent 
-
-total = billAmount + tip
-Display "Tip: $ " + tip
-Display "Total:$" + total
-
-End
-
-Expected result: Please enter a valid number for the bill amount.
-keep asking the user for correct input until it is provided.
-Don't allow the user to enter a negative number.
-Break the program into functions that do computations.
-#automatically updates the values when any values challanges. ---> That means makes a GUI version??
-
-
-
-1. make a Calculator class.
-2. setup the inputs.
-*/
+using namespace std; //Actually, this is NOT a good for practice. But, this program is NOT commercial one, so i could use it for convenience my own.
 
 class Calculator{
 	private:
