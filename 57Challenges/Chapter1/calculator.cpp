@@ -52,24 +52,24 @@ class Calculator{
 
 void Calculator::takeTheBill(){
 	try{
-			do{
-				cout<<"\"What is the bill amount?\""<<endl;                                  
-				getline(cin,this->billamount);
-				if(std::stof(this->billamount) < 0)
-					cout<<"Please enter a valid number for the bill amount"<<endl;
-			}while(std::stof(this->billamount) < 0);
-			
-			do{
-				cout<<"\"What is the tip rate?\""<<endl;
-				getline(cin,this->tipRate);
-				if(std::stof(this->tipRate) < 0)
-					cout<<"Please enter a valid number for the tip rate"<<endl;
-			}while(std::stof(this->tipRate) < 0);
+		do{
+			cout<<"\"What is the bill amount?\""<<endl;                                  
+			getline(cin,this->billamount);
+			if(std::stof(this->billamount) < 0)
+				cout<<"Please enter a valid number for the bill amount"<<endl;
+		}while(std::stof(this->billamount) < 0);
+		
+		do{
+			cout<<"\"What is the tip rate?\""<<endl;
+			getline(cin,this->tipRate);
+			if(std::stof(this->tipRate) < 0)
+				cout<<"Please enter a valid number for the tip rate"<<endl;
+		}while(std::stof(this->tipRate) < 0);
 
-			this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
-			this->total = std::stof(this->billamount) + this->tip;
-			cout<<"\"Tip: $\""<<this->tip<<endl;
-			cout<<"\"Total\""<<":"<<this->total<<" "<<"Dollars"<<endl;
+		this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
+		this->total = std::stof(this->billamount) + this->tip;
+		cout<<"\"Tip: $\""<<this->tip<<endl;
+		cout<<"\"Total\""<<":"<<this->total<<" "<<"Dollars"<<endl;
 	}catch(std::invalid_argument){
 		cout<<"Please Enter Numbers ONLY, NOT Characters"<<endl;
 		cout<<"Program will be End"<<endl;
