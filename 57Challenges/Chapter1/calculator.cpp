@@ -19,18 +19,18 @@ tip = bilAmount * (tipRate / 100)
 
 #round tip up to nearest cent 
 
+total = billAmount + tip
+Display "Tip: $ " + tip
+Display "Total:$" + total
 
-#total = billAmount + tip
-#Display "Tip: $ " + tip
-#Display "Total:$" + total
+End
 
-#End
+Expected result: Please enter a valid number for the bill amount.
+keep asking the user for correct input until it is provided.
+Don't allow the user to enter a negative number.
+Break the program into functions that do computations.
+#automatically updates the values when any values challanges. ---> That means makes a GUI version??
 
-#Expected result: Please enter a valid number for the bill amount.
-#keep asking the user for correct input until it is provided.
-#Don't allow the user to enter a negative number.
-#Break the program into functions that do computations.
-#automatically updates the values when any values challanges.
 
 
 1. make a Calculator class.
@@ -51,14 +51,29 @@ class Calculator{
 };
 
 void Calculator::takeTheBill(){
-	cout<<"\"What is the bill amount?\""<<endl;                                  
-        getline(cin,this->billamount);
-	
-	cout<<"\"What is the tip rate?\""<<endl;
-		getline(cin,this->tipRate);
-	this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
-	this->total = std::stof(this->billamount) + this->tip;
-	cout<<"\"Total\""<<":"<<this->total<<" "<<"Dollars"<<endl;
+	try{
+			do{
+				cout<<"\"What is the bill amount?\""<<endl;                                  
+				getline(cin,this->billamount);
+				if(std::stof(this->billamount) < 0)
+					cout<<"Please enter a valid number for the bill amount"<<endl;
+			}while(std::stof(this->billamount) < 0);
+			
+			do{
+				cout<<"\"What is the tip rate?\""<<endl;
+				getline(cin,this->tipRate);
+				if(std::stof(this->tipRate) < 0)
+					cout<<"Please enter a valid number for the tip rate"<<endl;
+			}while(std::stof(this->tipRate) < 0);
+
+			this->tip = std::stof(this->billamount) * std::stof(this->tipRate) /100;
+			this->total = std::stof(this->billamount) + this->tip;
+			cout<<"\"Tip: $\""<<this->tip<<endl;
+			cout<<"\"Total\""<<":"<<this->total<<" "<<"Dollars"<<endl;
+	}catch(std::invalid_argument){
+		cout<<"Please Enter Numbers ONLY, NOT Characters"<<endl;
+		cout<<"Program will be End"<<endl;
+	}
 
 }
 
